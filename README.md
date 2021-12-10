@@ -31,25 +31,25 @@ ROD is useful in
 
 ### 3.2 Why ROD?
 
-ROD simplifies creation of layout entities in SKILL by providing these facilities:
+ROD simplifies the creation of layout entities in SKILL by providing these facilities:
 - An object can be accessed in a hierarchy by its name.
-- Points on an object can be referenced by name (ll,ur).
-- Alignment of ROD objects are fast and effective.
+- Points on an object can be referenced by name (ll, ur).
+- Alignment of ROD objects is fast and effective.
 - Complex structures involving several layers can be created easily. 
-- Techology information can be used so that ROD structures are process independent.
+- Technology information can be used so that ROD structures are process-independent.
 
 ### 3.3 ROD Concepts
 
 - *Named objects*
 
-ROD allows to assign a name to any shape. Any instance already has a name, and ROD allows us to reference an instance by its name.
-- *Object handels*
+ROD allows for an assignment of a name to any shape. Any instance already has a name, and ROD allows us to reference an instance by its name.
+- *Object handles*
 
-A handle is an item of information about ROD object, such as a point on the object's bounding box. There are two kinds of ROD handels:
+A handle is an item of information about a ROD object, such as a point on the object's bounding box. There are two kinds of ROD handles:
 - 1. System Defined
   -  Automatically defined when a ROD object is created. Calculated on-demand as they are accessed. 
-- 2. User Defined
-  - User created to store calculations, special coordinates, or other data. Stored in memory and saved to the database.
+- 2. User-Defined
+  - User-created to store calculations, special coordinates, or other data. Stored in memory and saved to the database.
  
 - *Object alignment*
 
@@ -57,10 +57,20 @@ We can align ROD objects with respect to each other. Once established, the align
 
 - *Connectivity assignment*
 
-For a ROD shape, we can specify connectivity by associating the shape with a specific terminal and net. We can make the shape into in a pin.
+For a ROD shape, we can specify connectivity by associating the shape with a specific terminal and net. We can make the shape into a pin.
 
 - *Multipart paths*
 
-A multipart path is a ROD object composed of multiple shapes. A multipart path consist of a single master path and one or more subparts (offset subpath, enclosure subpath, set of subrectangles). Genrally complex structures like Buses, Guard-rings, Contact arrays, Transistors are defined with multipart paths.  
+A multipart path is a ROD object composed of multiple shapes. A multipart path consists of a single master path and one or more subparts (offset subpath, enclosure subpath, set of sub-rectangles). Generally, complex structures like Buses, Guard-rings, Contact arrays, Transistors are defined with multipart paths.  
 
-- ROD object structure
+- *ROD object structure*
+
+A ROB Object contains:
+- 1. Hierarchical name
+- 2. Cellview ID
+- 3. Database ID
+- 4. Transformation information (rotation, mag, and offset)
+- 5. Alignment information
+- 6. Number of segments 
+- 7. Names of user-defined handles
+- 8. Names of system-defined handles
