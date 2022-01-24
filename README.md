@@ -87,7 +87,79 @@ rodNameShape(
 
 ### 3.5 ROD Functions
 
-- 1.Get the cellview and assign it to a variable called cv.
+#### 3.5.1 Object creation
+rodCreatePath
+rodCreatePolygon
+rodCreateRect
+rodAddMPPChopHole
+#### 3.5.2 Object alignment
+rodAlign
+rodUnalign
+#### 3.5.3 Object information
+rodGetObj rodlsObj
+rodNameShape rodUnNameShape rodGetNamedShapes
+rodGetHandle rodlsHandle
+rodCreateHandle rodDeleteHandle rodAssignHandleToParameter
+rodCheck rodlsFigNameUnused
+
+##### rodCreateRect
+This function creates a single rectangle, an array of rectangles or fills a bounding box with rectangles.
+
+```
+rodCreateRect(
+  [?name t_name]
+  ?layer txl_layer
+  [?width n_width]
+  [?length n_length]
+  [?origin l_origin]
+  [?bBox l_bBox]
+  [?elementsX x_elementsX]
+  [?elementsY x_elementsY]
+  [?spaceX n_spaceX]
+  [?spaceY n_spaceY]
+  [?cvId d_cvId]
+  [?fillBBox l_fillBBox]
+  [?size txf_size]
+  [?subRectArray l_subrectArgs]
+ )
+ 
+ ```
+ [*Examples*]
+ 
+ 1. Create a single rectangle with a bBox:
+ ```
+ rodCreateRect(
+  ?cvId geGetEditCellView()
+  ?layer "m1"
+  ?bBox list(2:3 5:7)
+ )
+ ```
+ 2. Create a rectangle named "myRx" using width and length arguments:
+ ```
+ rodCreateRect(
+  ?cvId geGetEditCellView()
+  ?layer "m3"
+  ?length 3
+  ?width 4
+  ?name "myRx"
+)
+```
+3. Create a 3-by-4 array of unit squares starting at th origin. Separate them by 2 units horizontally and 1 unit vertically:
+```
+rodCreateRect(
+  ?cvid geGetEditCellView()
+  ?layer list("m1" "pin")
+  ?width 1
+  ?length 1
+  ?elementsX 3
+  ?elementsY 4
+  ?spaceX 2
+  ?spaceY 1
+)
+```
+
+
+- 1. Get the cellview and assign it to a variable called cv.
 ```
 procedure( SrGetRectCV()
   cv = dbFindOpenCellView(ddGetObj("lib") "cellname" "viewname")
@@ -131,6 +203,61 @@ procedure( SrPins()
     ?termName "G"
   ) 
 ```
-   
+- 4. Align the "upperPin" with the "gate"
+```
+procedure( SrAlignTop()
+  rodAlign(
+    ?alignObj rodGetObj("upperPin" cv)
+    ?alignHandle "upperCenter"
+    ?refObj rodGetObj("gate" cv)
+    ?refHandle "upperCenter"
+  )
+)
+```
+- 5. Align the "lowerPin" with the "gate"
+```
+procedure( SrAlignLower()
+  rodAlign(
+    ?alignObj rodGetObj("lowerPin" cv)
+    ?alignHandle "lowerCenter"
+    ?refObj rodGetObj("gate" cv)
+    ?refHandle "lowerCenter"
+  )
+)
+```
+- 6. Create another gate similar to the one created using multipart path.
+```
+procedure( SrAnotherGate()
+  rodCreatePath(
+    ?cvId cv
+    ?name "gate2"
+    ?layer "poly"
+    ?width 0.6
+    ?pts list(3:1 3:4.6)
+    ?subRect list(
+      list(
+        ?layer list("poly" "pin")
+        ?pin t
+        ?termName "G"
+        ?width 0.6
+        ?length 0.3
+        ?space 3.0
+      )
+    )
+  )
+)
+```
+- 6. Align both the gates
+```
+procedure( SrAlignBoth()
+  rodAlign(
+    ?alignObj rodGetObj("gate2" cv)
+    ?alignHandle "centreLeft"
+    ?refObj rodGetObj("gate" cv)
+    ?refHandle "centreRight"
+    ?xSep 1.0
+  )
+)
 
-
+```
+ 
