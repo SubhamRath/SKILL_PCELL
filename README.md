@@ -103,7 +103,6 @@ rodNameShape(
 
 ##### 3.5.1.1 rodCreateRect
 This function creates a single rectangle, an array of rectangles or fills a bounding box with rectangles.
-
 ```
 rodCreateRect(
   [?name t_name]
@@ -123,7 +122,7 @@ rodCreateRect(
  )
  
  ```
- [*Examples*]
+ [**Examples**]
  
  1. Create a single rectangle with a bBox:
  ```
@@ -156,7 +155,48 @@ rodCreateRect(
   ?spaceY 1
 )
 ```
+##### 3.5.1.2 rodCreatePolygon
+This function creates one polygon using the points we specify. 
+```
+rodCreatePolygon(
+  [?name t_name]                ;;name of the polygon
+  ?layer txl_layer              ;;Layer 
+  [?pts l_pts]                  ;;vertices
+  [?cvId d_cvId]                ;;cellview ID
+  [?fromObj RI_fromObj]         ;;Use object to form new object       
+  [?size txf_size]              ;Up/down-size new object
+)
+```
+ [**Examples**]
+ 
+ 1. Create a m1 polygon named "myPx" with vertices at 9:4 11:4 11:1 5:1 9:2
+ ```
+ rodCreatePolygon(
+  ?cvId geGetEditCellView()
+  ?name "myPx"
+  ?layer "m1"
+  ?pts list(9:4 11:4 11:1 5:1 5:2 9:2)
+)
+```
+##### 3.5.1.3 rodCreatePath
+This function creates a path consisting of one or more shapes. The resulting object is known as a simple path if it consists of a single shape. A path with multiple shapes is known as a multipart path.
 
+The function is composed of three sections:
+```
+rodCreatePath(
+  /* Master Path specifications */
+  ?layer txl_layer
+  ....
+  
+  /* Optional connectivity specifications*/
+  ....
+  /* Optional subpath specifications*/
+  [?offsetSubPath l_offsetSubPathArgs...]
+  [?encSubPath l_encSubPathArgs...]
+  [?subRect l_subRectArgs...]
+  
+)
+```
 
 - 1. Get the cellview and assign it to a variable called cv.
 ```
@@ -246,7 +286,7 @@ procedure( SrAnotherGate()
   )
 )
 ```
-- 6. Align both the gates
+- 7. Align both the gates
 ```
 procedure( SrAlignBoth()
   rodAlign(
@@ -259,4 +299,4 @@ procedure( SrAlignBoth()
 )
 
 ```
- 
+
