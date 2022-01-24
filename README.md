@@ -90,6 +90,47 @@ rodNameShape(
 - 1.Get the cellview and assign it to a variable called cv.
 ```
 procedure( SrGetRectCV()
-  cv = dbFindOpenCellView(ddGetObj(""
+  cv = dbFindOpenCellView(ddGetObj("lib") "cellname" "viewname")
+  )
+ 
+```
+- 2. Create a rectangle and place it into the layout cellview.
+```
+procedure( SrGate()
+  rodCreateRect(
+    ?cvId cv
+    ?name "gate"
+    ?layer "poly"
+    ?width 0.6
+    ?length 3.6
+  )
+)
+```
+- 3. Create two pins "upperPin" and "lowerPin".
+```
+procedure( SrPins()
+  rodCreateRect(
+    ?cvId cv
+    ?name "upperPin"
+    ?layer list("poly" "pin")
+    ?width 0.6
+    ?length 0.3
+    ?origin 1:4
+    ?pin t
+    ?termName "G"
+  )
+  
+   rodCreateRect(
+    ?cvId cv
+    ?name "lowerPin"
+    ?layer list("poly" "pin")
+    ?width 0.6
+    ?length 0.3
+    ?origin 2:0
+    ?pin t
+    ?termName "G"
+  ) 
+```
+   
 
 
