@@ -88,21 +88,27 @@ rodNameShape(
 ### 3.5 ROD Functions
 
 #### 3.5.1 Object creation
-rodCreatePath
-rodCreatePolygon
-rodCreateRect
+1. rodCreatePath
+
+2. rodCreatePolygon
+
+3. rodCreateRect
+
 rodAddMPPChopHole
 #### 3.5.2 Object alignment
-rodAlign
-rodUnalign
+rodAlign rodUnalign
 #### 3.5.3 Object information
-rodGetObj rodlsObj
-rodNameShape rodUnNameShape rodGetNamedShapes
-rodGetHandle rodlsHandle
-rodCreateHandle rodDeleteHandle rodAssignHandleToParameter
-rodCheck rodlsFigNameUnused
+1. rodGetObj rodlsObj
 
-##### rodCreateRect
+2. rodNameShape rodUnNameShape rodGetNamedShapes
+
+3. rodGetHandle rodlsHandle
+
+4. rodCreateHandle rodDeleteHandle rodAssignHandleToParameter
+
+5. rodCheck rodlsFigNameUnused
+
+##### 3.5.1.1 rodCreateRect
 This function creates a single rectangle, an array of rectangles or fills a bounding box with rectangles.
 
 ```
