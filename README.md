@@ -75,7 +75,7 @@ A ROB Object contains:
 - 7. Names of user-defined handles
 - 8. Names of system-defined handles
 
-- *Converting Database objects to ROD Objects*
+### 3.4 Converting Database objects to ROD Objects
 
 We can convert an existing database object to a ROD object using the `rodNameShape` command.
 ```
@@ -85,7 +85,7 @@ rodNameShape(
   [?permitRename g_permitRename]) 
 ```
 
-- *ROD Functions*
+### 3.5 ROD Functions
 
 - 1.Get the cellview and assign it to a variable called cv.
 ```
