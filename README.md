@@ -92,14 +92,6 @@ rodNameShape(
 2. rodCreatePolygon
 3. rodCreateRect
 4. rodAddMPPChopHole
-#### 3.5.2 Object alignment
-1. rodAlign rodUnalign
-#### 3.5.3 Object information
-1. rodGetObj rodlsObj
-2. rodNameShape rodUnNameShape rodGetNamedShapes
-3. rodGetHandle rodlsHandle
-4. rodCreateHandle rodDeleteHandle rodAssignHandleToParameter
-5. rodCheck rodlsFigNameUnused
 
 ##### 3.5.1.1 rodCreateRect
 This function creates a single rectangle, an array of rectangles or fills a bounding box with rectangles.
@@ -343,6 +335,16 @@ rodCreatePath(
    )
 )
 ```
+
+#### 3.5.2 Object alignment
+1. rodAlign rodUnalign
+#### 3.5.3 Object information
+1. rodGetObj rodlsObj
+2. rodNameShape rodUnNameShape rodGetNamedShapes
+3. rodGetHandle rodlsHandle
+4. rodCreateHandle rodDeleteHandle rodAssignHandleToParameter
+5. rodCheck rodlsFigNameUnused
+
 
 
 - 1. Get the cellview and assign it to a variable called cv.
