@@ -197,6 +197,152 @@ rodCreatePath(
   
 )
 ```
+**Masterpath Arguments**
+```
+rodCreatePath(
+  [?name t_name] ;; Name of resulting path
+  ?layer txl_layer ;; Layer on which to draw path
+  [?width n_width] ;; Path width
+  [?pts l_pts] ;; Points on the path
+  [?justification t_justification] ;; Path offset method
+  [?offset n_offset] ;; Distance to offset master
+  [?endType t_endType] ;; Type of end structure
+  [?beginExt n_beginExt] ;; Extension at path beginning
+  [?endExt n_endExt] ;; Extension at path ending
+  [?choppable g_choppable] ;; Responds to chop command?
+  [?cvId d_cvId] ;; Cellview to contain the path
+  [?fromObj Rl_fromObj] ;; Use obj(s) to form new obj
+  [?size txf_size] ;; Up/down-size new object
+  [?startHandle l_startHandle] ;; Begin at this source handle
+  [?endHandle l_endHandle] ;; End at this source handle
+  /* ROD Connectivity Arguments and subpath specifications */ 
+)
+```
+[**Examples**]
+1. Create a simple path:
+```
+rodCreatePath(
+  ?cvId geGetEditCellView() 
+  ?layer “metal1”
+  ?pts list(13:2 18:2 18:5 23:5)
+)
+```
+2. Create a simple path with end extensions:
+```
+rodCreatePath(
+  ?cvId geGetEditCellView()
+  ?layer “metal1”
+  ?pts list(13:2 18:2 18:5 23:5)
+  ?endType “variable” ;; Enables end extensions.
+  ?beginExt 1.5 ;; Positive values extend beyond
+  ?endExt 0.75 ;; master path.
+)
+```
+**rodCreatePath with Offset Subpath**
+We can use these optional arguments to specify one or more subpaths offset from the master path:
+```
+list( ;; Offset Subpath Arguments
+  list(
+        ?layer txl_layer ;; Subpath drawn on this layer
+        [?width n_width] ;; Subpath width
+        [?sep n_sep] ;; Separation from master path
+        [?justification t_justification] ;; Method of offset
+        [?beginOffset n_beginOffset] ;; Offset beginning of subpath
+        [?endOffset n_endOffset] ;; Offset ending of subpath
+        [?choppable g_choppable] ;; Subpath responds to chop?
+        /* ROD Connectivity Arguments */
+      ) ;; End of first offset subpath description
+... ;; More offset subpath arguments
+) ;; End of offset subpath arguments
+```
+[**Example**]
+1. Create a two-bit bus using a mulipart path:
+```
+rodCreatePath(
+  ?cvId geGetEditCellView()
+  ?layer “metal1”
+  ?width 0.8
+  ?pts list(20:-20 40:-20 40:-30 80:-30)
+  ?offsetSubPath
+    list(
+      list(
+        ?layer “metal1”
+        ?justification “left” ;; Sub-path on “left” side of master path.
+        ?sep 0.6
+      )
+   )
+)
+```
+**rodCreatePath with Enclosed Subpath**
+We can use these optional arguments to specify one or more subpaths either enclosing or enclosed by the master path:
+```
+list( ;; Enclosure Subpath Arguments
+  list(
+    ?layer txl_layer ;; Draw the subpath on this layer
+    [?enclosure n_enclosure] ;; Amount encloses or is enclosed
+    [?beginOffset n_beginOffset] ;; Offset for subpath beginning
+    [?endOffset n_endOffset] ;; Offset for subpath ending
+    [?choppable g_choppable] ;; Subpath responds to chop?
+    /* ROD Connectivity Arguments */
+  ) ;; End of first enclosure subpath list
+    ... ;; More enclosure subpath arguments 
+) ;; End of enclosure subpath arguments
+```
+[**Example**]
+1. Create a metal1 path enclosed by n-type diffusion:
+```
+rodCreatePath(
+  ?cvId geGetEditCellView()
+  ?layer “metal1”
+  ?width 0.8
+  ?pts list(20:-20 40:-20 40:-30 80:-30)
+  ?encSubPath
+    list(
+      list(
+        ?layer “ndiff”
+        ?enclosure -0.6 ;; Amount diffusion overlaps metal
+      )
+   )
+)
+```
+**rodCreatePath with Subrectangles**
+We can use these optional arguments to specify one or more sets of repeated rectangles subordinate to the master path:
+```
+list( ;; Subrectangle Arguments
+  list(
+    ?layer txl_layer ;; Subrects drawn on this layer
+    [?width n_width] ;; Width of each subrectangle
+    [?length n_length] ;; Length of each subrectangle
+    [?gap t_gap] ;; Method for excess space
+    [?sep n_sep] ;; Offset from center or edge
+    [?justification t_justification] ;; Use center or edge of master
+    [?beginOffset n_beginOffset] ;; Offset for beginning rect
+    [?endOffset n_endOffset] ;; Offset for ending rect
+    [?space n_space] ;; Space between rectangles
+    [?choppable g_choppable] ;; Responds to chop command?
+    /* ROD Connectivity Arguments */
+  ) ;; End of first list for subrectangles
+  ... ;; More subrectangle arguments
+) ;; End of subrectangle arguments
+```
+[**Example**]
+1. Create a multipart path consisting of a metal stripe and an embedded array of contacts:
+````
+rodCreatePath(
+  ?cvId geGetEditCellView()
+  ?layer “metal1”
+  ?width 2.0
+  ?pts list(0.0:0.0 0.0:10.0)
+  ?subRect
+    list(
+      list(
+        ?layer “cont”
+        ?beginOffset -0.5 ;; Negative values specify rects
+        ?endOffset -0.5 ;; overlapped by master path.
+      )
+   )
+)
+```
 
 - 1. Get the cellview and assign it to a variable called cv.
 ```
