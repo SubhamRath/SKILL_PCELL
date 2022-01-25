@@ -88,9 +88,9 @@ rodNameShape(
 ### 3.5 ROD Functions
 
 #### 3.5.1 Object creation
-1. rodCreatePath
+1. rodCreateRect
 2. rodCreatePolygon
-3. rodCreateRect
+3. rodCreatePath
 4. rodAddMPPChopHole
 
 ##### 3.5.1.1 rodCreateRect
