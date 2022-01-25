@@ -231,6 +231,7 @@ rodCreatePath(
 )
 ```
 **rodCreatePath with Offset Subpath**
+
 We can use these optional arguments to specify one or more subpaths offset from the master path:
 ```
 list( ;; Offset Subpath Arguments
@@ -266,6 +267,7 @@ rodCreatePath(
 )
 ```
 **rodCreatePath with Enclosed Subpath**
+
 We can use these optional arguments to specify one or more subpaths either enclosing or enclosed by the master path:
 ```
 list( ;; Enclosure Subpath Arguments
@@ -298,6 +300,7 @@ rodCreatePath(
 )
 ```
 **rodCreatePath with Subrectangles**
+
 We can use these optional arguments to specify one or more sets of repeated rectangles subordinate to the master path:
 ```
 list( ;; Subrectangle Arguments
