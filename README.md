@@ -327,7 +327,7 @@ list( ;; Subrectangle Arguments
 ```
 [**Example**]
 1. Create a multipart path consisting of a metal stripe and an embedded array of contacts:
-````
+```
 rodCreatePath(
   ?cvId geGetEditCellView()
   ?layer “metal1”
@@ -343,6 +343,7 @@ rodCreatePath(
    )
 )
 ```
+
 
 - 1. Get the cellview and assign it to a variable called cv.
 ```
